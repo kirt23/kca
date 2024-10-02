@@ -11,12 +11,14 @@ import Card from 'react-bootstrap/Card'
 import axios from 'axios';
 
 function CartScreen() {
+ 
+    
     const navigate = useNavigate();
     const {state, dispatch: ctxDispatch} = useContext(Store);
     const {
         cart: {cartItems},
     } = state;
-
+    const {userInfo} =  state;
     const updateCartHandler = async(item, quantity) => {
       const {data} = await axios.get(`/api/products/${item._id}`)
       if(data.countInStock < quantity) {
@@ -26,39 +28,45 @@ function CartScreen() {
 
       ctxDispatch({
         type: "CART_ADD_ITEM",
-        payload: {...item, quantity}
-      })
-    }
+        payload: {...item, quantity},
+      });
+    };
     const removeItemHandler = (item) => {
       ctxDispatch({type: 'CART_REMOVE_ITEM', payload: item})
     }
     const checkoutHandler = () => {
       navigate('/signin?redirect=/shipping')
     }
+
+    
   return (
-    <div>
+     <div>
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
-      <h1>Shopping Cart</h1>
+      <h1>Shopping Bag</h1>
       <Row>
         <Col md={8}>
           {cartItems.length === 0
             ? (<MessageBox>
-              CART IS EMPTY <Link to="/">Go To Shop</Link>
+              CART IS EMPTY <Link to="/search">Go To Shop</Link>
             </MessageBox>)
             : (<ListGroup>
               {cartItems.map(
                 (item) => (
                   <ListGroup.Item key={item._id}>
                     <Row className='align-items-center'>
-                      <Col md={4}>
+
+                        {/* IMAGE     IMAGE     IMAGE */}
+                      <Col md={4}> 
                         <img 
                         src={item.image}
                         alt={item.name}
                         className='img-fluid rounded img-thumbnail'></img>{' '}
-                        <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                        <Link to={`/product/${item.slug}`} style={{textDecoration: "none", color: 'Black', fontWeight: 'bold'}}>{item.name}</Link>
                       </Col>
+
+                        {/* ITEM COUNT    ITEM COUNT    ITEM COUNT*/}
                       <Col md={3} className='ItemCount'>
                         <Button 
                         variant="light" 
@@ -74,13 +82,17 @@ function CartScreen() {
                           <i className='fas fa-plus-circle'></i>{/*ADD ITEM*/}
                         </Button>
                       </Col>
+
+                      {/* ITEM PRICE    ITEM PRICE    ITEM PRICE  */}
                       <Col className='ItemPrice' 
                         style={{alignItems: "center", 
                         height: "10vh", 
                         backgroundColor: "rgba(120, 255, 102, 0.54)", 
                         borderRadius: "8px"}} 
                         md={3}>
-                          ${item.price}</Col>
+                          ₱{(item.price * item.quantity).toFixed(2)}</Col>
+
+                        {/* DELETE ITEM     DELETE ITEM      DELETE ITEM */}
                       <Col md={2} className='ItemDelete'>
                         <Button onClick={() => removeItemHandler(item)} variant='light'>
                           <i className='fas fa-trash'></i> {/*DELETE ITEM*/}
@@ -92,32 +104,40 @@ function CartScreen() {
               )} 
             </ListGroup>)}
         </Col>
-        <Col md={4}>
+         <Col md={4}>
           <Card 
             style={{display: "flex", alignItems: "center", justifyContent:"center"}}>
             <Card.Body>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
                   <h3>
-                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} item/s): $
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)} item/s): 
+                    ₱{cartItems.reduce((a, c) => a + c.price * c.quantity, 0).toFixed(2)}
                   </h3>
                 </ListGroup.Item>
-                <ListGroup.Item>
+
+
+                <ListGroup.Item style={{display: "flex", justifyContent:"center", marginTop: "10px"}}>
                   <div className='d-grid'>
-                    <Button 
+                    <button 
+                    className="fancy"
                     type='button' 
-                    variant='primary' 
                     onClick={checkoutHandler}
                     disabled={cartItems.length === 0}>
-                      Proceed To Checkout
-                    </Button>
+                      <span className="top-key"></span>
+                      <span className="text">PROCEED TO CHECK OUT</span>
+                      <span className="bottom-key-1"></span>
+                      <span className="bottom-key-2"></span>
+                    </button>
                   </div>
                 </ListGroup.Item>
+
+
+
               </ListGroup>
             </Card.Body>
           </Card>
-        </Col>
+        </Col> 
       </Row>
     </div>
   )

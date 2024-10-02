@@ -1,0 +1,301 @@
+[{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec8d"
+  },
+  "name": "Blue Jersey",
+  "slug": "blue-jersey-men",
+  "image": "/images/blueMens.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight jersey for active lifestyles.",
+  "price": 120,
+  "countInStock": 50,
+  "rating": 3,
+  "numReviews": 1,
+  "reviews": [
+    {
+      "name": "jay",
+      "comment": "anggaling",
+      "rating": 3,
+      "_id": {
+        "$oid": "66f0051760845440d344cdd0"
+      },
+      "createdAt": {
+        "$date": "2024-09-22T11:52:55.637Z"
+      },
+      "updatedAt": {
+        "$date": "2024-09-22T11:52:55.637Z"
+      }
+    }
+  ],
+  "__v": 1,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.268Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T03:24:21.986Z"
+  },
+  "isArchived": false,
+  "archivedAt": {
+    "$date": "2024-09-23T03:24:11.021Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec8e"
+  },
+  "name": "Yellow Jersey",
+  "slug": "yellow-jersey-men",
+  "image": "/images/yellowMens.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight jersey for active lifestyles.",
+  "price": 320,
+  "countInStock": 50,
+  "rating": 3.2,
+  "numReviews": 9,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.268Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T03:24:25.471Z"
+  },
+  "isArchived": false,
+  "archivedAt": {
+    "$date": "2024-09-22T13:47:11.164Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec8f"
+  },
+  "name": "White Jersey",
+  "slug": "White-jersey-men",
+  "image": "/images/whiteJersey.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight jersey for active lifestyles.",
+  "price": 620,
+  "countInStock": 50,
+  "rating": 4.2,
+  "numReviews": 9,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T09:19:58.281Z"
+  },
+  "isArchived": false,
+  "archivedAt": {
+    "$date": "2024-09-18T09:19:18.051Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec90"
+  },
+  "name": "Gray Jersey",
+  "slug": "Gray-jersey-men",
+  "image": "/images/grayJersey.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight jersey for active lifestyles.",
+  "price": 620,
+  "countInStock": 50,
+  "rating": 2.2,
+  "numReviews": 9,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T09:20:00.352Z"
+  },
+  "isArchived": false,
+  "archivedAt": {
+    "$date": "2024-09-18T09:19:31.780Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec91"
+  },
+  "name": "Black Jersey",
+  "slug": "black-jersey-men",
+  "image": "/images/blackJersey.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight jersey for active lifestyles.",
+  "price": 620,
+  "countInStock": 50,
+  "rating": 3,
+  "numReviews": 1,
+  "reviews": [
+    {
+      "name": "jay",
+      "comment": "bibili pa ulit ako neto",
+      "rating": 3,
+      "_id": {
+        "$oid": "66ec133e0be357258e29817d"
+      },
+      "createdAt": {
+        "$date": "2024-09-19T12:04:14.901Z"
+      },
+      "updatedAt": {
+        "$date": "2024-09-19T12:04:14.901Z"
+      }
+    }
+  ],
+  "__v": 1,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-19T12:04:14.902Z"
+  },
+  "isArchived": false,
+  "archivedAt": {
+    "$date": "2024-09-18T09:35:07.151Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec92"
+  },
+  "name": "Green Jersey",
+  "slug": "Green-jersey-men",
+  "image": "/images/greenJersey.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight jersey for active lifestyles.",
+  "price": 520,
+  "countInStock": 50,
+  "rating": 4.2,
+  "numReviews": 9,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "isArchived": false
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec93"
+  },
+  "name": "Kid's jersey Golden State",
+  "slug": "kids-jersey-golden-state-1",
+  "image": "/images/goldenstate.png",
+  "images": [],
+  "brand": "Nike",
+  "category": "Kid's Jersey",
+  "description": "high quality shirt",
+  "price": 120,
+  "countInStock": 50,
+  "rating": 4.5,
+  "numReviews": 10,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T09:19:09.569Z"
+  },
+  "isArchived": false,
+  "archivedAt": {
+    "$date": "2024-09-18T09:17:48.472Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec94"
+  },
+  "name": "Kid's Jersey Jordan",
+  "slug": "kids-jordan-jersey",
+  "image": "/images/jordanjersey.png",
+  "images": [],
+  "brand": "Adidas",
+  "category": "Kid's Jersey",
+  "description": "Iconic sneakers with a timeless design.",
+  "price": 80,
+  "countInStock": 50,
+  "rating": 4.3,
+  "numReviews": 8,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "isArchived": false
+},
+{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec95"
+  },
+  "name": "Kid's Jersey Philippines",
+  "slug": "kids-jersey-philippines",
+  "image": "/images/jerseyphilippines.png",
+  "images": [],
+  "brand": "Under Armour",
+  "category": "Men's Jersey",
+  "description": "Breathable and lightweight shorts for active lifestyles.",
+  "price": 45,
+  "countInStock": 50,
+  "rating": 4.1,
+  "numReviews": 6,
+  "reviews": [],
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T04:07:30.269Z"
+  },
+  "isArchived": false
+},
+{
+  "_id": {
+    "$oid": "66eee2dfa06bc64624cb788f"
+  },
+  "name": "123123123",
+  "slug": "123124515wsdasd",
+  "image": "https://res.cloudinary.com/dv1lnu2cn/image/upload/v1726931697/uvdzy1crzk2uh4uac89l.png",
+  "images": [],
+  "brand": "sample brand",
+  "category": "sample category",
+  "description": "sample description",
+  "price": 1000,
+  "countInStock": 12,
+  "rating": 0,
+  "numReviews": 0,
+  "isArchived": true,
+  "reviews": [],
+  "createdAt": {
+    "$date": "2024-09-21T15:14:39.100Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T04:27:45.800Z"
+  },
+  "__v": 0,
+  "archivedAt": {
+    "$date": "2024-09-23T04:27:45.799Z"
+  }
+}]

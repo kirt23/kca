@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "66ea5202cdbbf9874be8ec9f"
+  },
+  "name": "John",
+  "lastname": "McArthy",
+  "image": "/images/blueMens.png",
+  "images": [
+    "/images/yellowMens.png",
+    "/images/blueMens.png"
+  ],
+  "phoneNum": 9436457821,
+  "description": "hiujpink sadasda asdasdasdadas",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-09-18T04:07:30.351Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-18T04:07:30.351Z"
+  }
+}]

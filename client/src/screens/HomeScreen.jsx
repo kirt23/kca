@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 //import data from '../data'
 import axios from 'axios';
 import Row from "react-bootstrap/Row"
@@ -9,27 +9,32 @@ import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import getError from '../utils';
-
-
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
       return {...state, loading: true};
     case 'FETCH_SUCCESS':
-    return {...state, products: action.payload, loading: false};
+      return {...state, products: action.payload, loading: false};
     case 'FETCH_FAIL':
-    return {...state, loading: false, error: action.payload};
+      return {...state, loading: false, error: action.payload};
+
     default:
       return state;
   }
 };
 
 function HomeScreen()  {
-  const [{loading, error, products}, dispatch] = useReducer(logger(reducer),{
+  
+  const [{loading, error, products, }, dispatch] = useReducer(logger(reducer),{
     products:[],
     loading: true,
     error: '',
   });
+
+  
+
+
+
   // const [products, setProducts] = useState([]);
   useEffect(()=>{
     const fetchData = async () => {
@@ -47,7 +52,7 @@ function HomeScreen()  {
   return (
     <div>
       <Helmet>
-        <title>AMAZONA</title>
+        <title>RYB</title>
         </Helmet>
        <h1>FEATURED PRODUCTS</h1>
           <div className="products">
@@ -58,18 +63,61 @@ function HomeScreen()  {
                 ? (<MessageBox variant="danger">{error}</MessageBox>)
                 : (
                   <Row>
-                    {products.map(product => (
+                    {products.slice(0, 6).map(product => (
                       <Col  key={product.slug} sm={6} md={4} lg={3} className="mb-3">
                         <Products product={product}></Products>
                         
                       </Col>
                       ))}
                   </Row>
-                  )
+                  
+                )
             }
+
           </div>
+          <div style={styles.emailLinkContainer}>
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=kcaligam@ccc.edu.ph"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={styles.emailLink}
+        >          <img
+            src="/images/gmail_logo.png" // Path to your Gmail logo image
+            alt="Gmail Logo"
+            style={styles.emailIcon}
+          />
+      
+        </a>
+      </div>
+      
     </div>
   )
 }
 
+
 export default HomeScreen;
+
+
+  const styles = {
+    emailLinkContainer: {
+      position: 'fixed',
+      bottom: '10px',
+      right: '10px',
+      zIndex: 1000,
+    },
+    emailLink: {
+      textDecoration: 'none',
+      backgroundColor: '#d14836',
+      color: 'white',
+      padding: '10px 20px',
+      borderRadius: '5px',
+      fontSize: '14px',
+      display: 'flex',
+      alignItems: 'center', // Align the text and image horizontally
+    },
+    emailIcon: {
+      width: '50px',
+      height: '30px',
+      marginRight: '8px', // Space between the image and text
+    },
+  };

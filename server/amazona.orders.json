@@ -1,0 +1,869 @@
+[{
+  "_id": {
+    "$oid": "66ed9b48f61dd9df3d8955b2"
+  },
+  "orderItems": [
+    {
+      "slug": "Gray-jersey-men",
+      "name": "Gray Jersey",
+      "quantity": 1,
+      "image": "/images/grayJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "Gomez",
+    "fullName": "Juan",
+    "address": "asdasd",
+    "city": "Canlubang",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1726847815158-gcash_receipt.png",
+  "itemsPrice": 620,
+  "shippingPrice": 0,
+  "taxPrice": 310,
+  "totalPrice": 620,
+  "user": {
+    "$oid": "66ea53e1179471c370b2585d"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-20T15:56:56.976Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T16:40:41.466Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-21T16:40:30.041Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-21T16:40:41.464Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66ed9bcaf61dd9df3d8955d3"
+  },
+  "orderItems": [
+    {
+      "slug": "black-jersey-men",
+      "name": "Black Jersey",
+      "quantity": 1,
+      "image": "/images/blackJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "Gomez",
+    "fullName": "Juan",
+    "address": "asdasd",
+    "city": "Canlubang",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "345235235235",
+  "paymentImage": "uploads/1726847922961-gcash_receipt.png",
+  "itemsPrice": 620,
+  "shippingPrice": 0,
+  "taxPrice": 310,
+  "totalPrice": 620,
+  "user": {
+    "$oid": "66ea53e1179471c370b2585d"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-20T15:59:06.282Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T17:00:18.252Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-20T16:46:45.652Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-21T17:00:18.245Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66eda429de1569f670b38261"
+  },
+  "orderItems": [
+    {
+      "slug": "Gray-jersey-men",
+      "name": "Gray Jersey",
+      "quantity": 1,
+      "image": "/images/grayJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "Gomez",
+    "fullName": "Juan",
+    "address": "asdasd",
+    "city": "Mayapa",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1726850086784-gcash_receipt.png",
+  "itemsPrice": 620,
+  "shippingPrice": 0,
+  "taxPrice": 310,
+  "totalPrice": 620,
+  "user": {
+    "$oid": "66ea53e1179471c370b2585d"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-20T16:34:49.617Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T17:07:10.358Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-20T16:38:07.998Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-21T17:07:10.348Z"
+  },
+  "proofOfDeliveryImage": "uploads\\proofOfDelivery\\1726938430305-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66eda99c9846fa82c0282da5"
+  },
+  "orderItems": [
+    {
+      "slug": "Green-jersey-men",
+      "name": "Green Jersey",
+      "quantity": 1,
+      "image": "/images/greenJersey.png",
+      "price": 520,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec92"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec92"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "Gomez",
+    "fullName": "Juan",
+    "address": "asdasd",
+    "city": "Mayapa",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1726851479500-gcash_receipt.png",
+  "itemsPrice": 520,
+  "shippingPrice": 0,
+  "taxPrice": 260,
+  "totalPrice": 520,
+  "user": {
+    "$oid": "66ea53e1179471c370b2585d"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-20T16:58:04.850Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T17:11:17.959Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-20T16:58:44.965Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-21T17:11:17.952Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1726938677913-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66eee3e4671e3a3dd2a03aa8"
+  },
+  "orderItems": [
+    {
+      "slug": "black-jersey-men",
+      "name": "Black Jersey",
+      "quantity": 1,
+      "image": "/images/blackJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      }
+    },
+    {
+      "slug": "123124515wsdasd",
+      "name": "123123123",
+      "quantity": 5,
+      "image": "https://res.cloudinary.com/dv1lnu2cn/image/upload/v1726931697/uvdzy1crzk2uh4uac89l.png",
+      "price": 1000,
+      "product": {
+        "$oid": "66eee2dfa06bc64624cb788f"
+      },
+      "_id": {
+        "$oid": "66eee2dfa06bc64624cb788f"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "Gomez",
+    "fullName": "Juan",
+    "address": "asdasadasd",
+    "city": "Mayapa",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1726931922384-gcash_receipt.png",
+  "itemsPrice": 5620,
+  "shippingPrice": 0,
+  "taxPrice": 2810,
+  "totalPrice": 5620,
+  "user": {
+    "$oid": "66ea53e1179471c370b2585d"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-21T15:19:00.627Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T17:17:14.908Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-21T16:08:26.719Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-21T17:17:14.896Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1726939034860-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66eee9e7008561ac2634252f"
+  },
+  "orderItems": [
+    {
+      "slug": "yellow-jersey-men",
+      "name": "Yellow Jersey",
+      "quantity": 1,
+      "image": "/images/yellowMens.png",
+      "price": 320,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "Gomez",
+    "fullName": "Juan",
+    "address": "asdasd",
+    "city": "Mayapa",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1726933473158-gcash_receipt.png",
+  "itemsPrice": 320,
+  "shippingPrice": 0,
+  "taxPrice": 160,
+  "totalPrice": 320,
+  "user": {
+    "$oid": "66ea53e1179471c370b2585d"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-21T15:44:39.050Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-21T16:37:17.758Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-21T16:10:57.647Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-21T16:37:17.748Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "66f0044e60845440d344cd44"
+  },
+  "orderItems": [
+    {
+      "slug": "black-jersey-men",
+      "name": "Black Jersey",
+      "quantity": 1,
+      "image": "/images/blackJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "asdasd",
+    "city": "Mayapa",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1727005759904-gcash_receipt.png",
+  "itemsPrice": 620,
+  "shippingPrice": 0,
+  "taxPrice": 310,
+  "totalPrice": 620,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-22T11:49:34.229Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-22T11:51:47.758Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-22T11:50:37.657Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-22T11:51:47.757Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1727005907718-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66f02bd8c4a4c2295c1c9ee9"
+  },
+  "orderItems": [
+    {
+      "slug": "Gray-jersey-men",
+      "name": "Gray Jersey",
+      "quantity": 2,
+      "image": "/images/grayJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      }
+    },
+    {
+      "slug": "black-jersey-men",
+      "name": "Black Jersey",
+      "quantity": 1,
+      "image": "/images/blackJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec91"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "asdasd",
+    "city": "Barandal",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "345345",
+  "paymentImage": "uploads/1727015895117-gcash_receipt.png",
+  "itemsPrice": 1860,
+  "shippingPrice": 0,
+  "taxPrice": 930,
+  "totalPrice": 1860,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-22T14:38:17.036Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-22T14:38:44.960Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-22T14:38:36.468Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-22T14:38:44.955Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1727015924911-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66f02e266602b810c28b7dd0"
+  },
+  "orderItems": [
+    {
+      "slug": "White-jersey-men",
+      "name": "White Jersey",
+      "quantity": 2,
+      "image": "/images/whiteJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8f"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8f"
+      }
+    },
+    {
+      "slug": "Gray-jersey-men",
+      "name": "Gray Jersey",
+      "quantity": 1,
+      "image": "/images/grayJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "gomez",
+    "city": "Banadero",
+    "postalCode": 92342342
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1727016483583-gcash_receipt.png",
+  "itemsPrice": 1860,
+  "shippingPrice": 0,
+  "taxPrice": 930,
+  "totalPrice": 1860,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-22T14:48:06.235Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T03:49:17.449Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-23T03:48:35.662Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-23T03:49:17.447Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1727063357429-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66f0e183ebb1630dd7f6fb65"
+  },
+  "orderItems": [
+    {
+      "slug": "yellow-jersey-men",
+      "name": "Yellow Jersey",
+      "quantity": 1,
+      "image": "/images/yellowMens.png",
+      "price": 320,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "ftf67uy786",
+    "city": "Batino",
+    "postalCode": 656789
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "345235235235",
+  "paymentImage": "uploads/1727062364568-gcash_receipt.png",
+  "itemsPrice": 320,
+  "shippingPrice": 0,
+  "taxPrice": 160,
+  "totalPrice": 320,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-23T03:33:23.576Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T03:35:29.135Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-23T03:34:04.577Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-23T03:35:29.134Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1727062529107-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66f0ef4757a6c2a8bc38d815"
+  },
+  "orderItems": [
+    {
+      "slug": "yellow-jersey-men",
+      "name": "Yellow Jersey",
+      "quantity": 2,
+      "image": "/images/yellowMens.png",
+      "price": 320,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "asdasd",
+    "city": "San Cristobal",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1727065909530-gcash_receipt.png",
+  "itemsPrice": 640,
+  "shippingPrice": 0,
+  "taxPrice": 320,
+  "totalPrice": 640,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-23T04:32:07.862Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T04:34:29.954Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-23T04:33:56.886Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-23T04:34:29.952Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1727066069937-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66f0ef4857a6c2a8bc38d818"
+  },
+  "orderItems": [
+    {
+      "slug": "yellow-jersey-men",
+      "name": "Yellow Jersey",
+      "quantity": 2,
+      "image": "/images/yellowMens.png",
+      "price": 320,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "asdasd",
+    "city": "San Cristobal",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1727065909530-gcash_receipt.png",
+  "itemsPrice": 640,
+  "shippingPrice": 0,
+  "taxPrice": 320,
+  "totalPrice": 640,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2024-09-23T04:32:08.099Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-23T04:32:08.099Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f4102b5c61c5da1207b2b3"
+  },
+  "orderItems": [
+    {
+      "slug": "White-jersey-men",
+      "name": "White Jersey",
+      "quantity": 1,
+      "image": "/images/whiteJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8f"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8f"
+      }
+    },
+    {
+      "slug": "yellow-jersey-men",
+      "name": "Yellow Jersey",
+      "quantity": 1,
+      "image": "/images/yellowMens.png",
+      "price": 320,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8e"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "123",
+    "city": "Banadero",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1727270950050-gcash_receipt.png",
+  "itemsPrice": 940,
+  "shippingPrice": 0,
+  "taxPrice": 470,
+  "totalPrice": 940,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2024-09-25T13:29:15.220Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-25T13:29:15.220Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f411155c61c5da1207b2d5"
+  },
+  "orderItems": [
+    {
+      "slug": "White-jersey-men",
+      "name": "White Jersey",
+      "quantity": 1,
+      "image": "/images/whiteJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8f"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8f"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "123",
+    "city": "Banadero",
+    "postalCode": 920334124
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234567890123",
+  "paymentImage": "uploads/1727271181529-gcash_receipt.png",
+  "itemsPrice": 620,
+  "shippingPrice": 0,
+  "taxPrice": 310,
+  "totalPrice": 620,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2024-09-25T13:33:09.612Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-25T13:33:09.612Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66f57c71587a644e996135eb"
+  },
+  "orderItems": [
+    {
+      "slug": "Gray-jersey-men",
+      "name": "Gray Jersey",
+      "quantity": 3,
+      "image": "/images/grayJersey.png",
+      "price": 620,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec90"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "ljiohihoihohoihoihoi",
+    "city": "Bagong Kalsada",
+    "postalCode": 2341234234
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "2234 234 234234",
+  "paymentImage": "uploads/1727364205210-gcash_receipt.png",
+  "itemsPrice": 1860,
+  "shippingPrice": 0,
+  "taxPrice": 930,
+  "totalPrice": 1860,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": true,
+  "isDelivered": true,
+  "createdAt": {
+    "$date": "2024-09-26T15:23:29.658Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-26T15:24:00.477Z"
+  },
+  "__v": 0,
+  "paidAt": {
+    "$date": "2024-09-26T15:23:52.479Z"
+  },
+  "deliveredAt": {
+    "$date": "2024-09-26T15:24:00.476Z"
+  },
+  "proofOfDeliveryImage": "uploads/proofOfDelivery/1727364240446-gcash_receipt.png"
+},
+{
+  "_id": {
+    "$oid": "66f96442bb32e0e191e93a30"
+  },
+  "orderItems": [
+    {
+      "slug": "blue-jersey-men",
+      "name": "Blue Jersey",
+      "quantity": 1,
+      "image": "/images/blueMens.png",
+      "price": 120,
+      "product": {
+        "$oid": "66ea5202cdbbf9874be8ec8d"
+      },
+      "_id": {
+        "$oid": "66ea5202cdbbf9874be8ec8d"
+      }
+    }
+  ],
+  "shippingAddress": {
+    "LastName": "juan",
+    "fullName": "jay",
+    "address": "0920334124",
+    "city": "Banadero",
+    "postalCode": 9976878588
+  },
+  "paymentMethodName": "GCash",
+  "referenceNumber": "1234 567 890122",
+  "paymentImage": "uploads/1727620157043-gcash_receipt.png",
+  "itemsPrice": 120,
+  "shippingPrice": 0,
+  "taxPrice": 60,
+  "totalPrice": 120,
+  "user": {
+    "$oid": "66ec15d00be357258e298192"
+  },
+  "isPaid": false,
+  "isDelivered": false,
+  "createdAt": {
+    "$date": "2024-09-29T14:29:22.633Z"
+  },
+  "updatedAt": {
+    "$date": "2024-09-29T14:29:22.633Z"
+  },
+  "__v": 0
+}]
