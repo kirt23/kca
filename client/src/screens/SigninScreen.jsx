@@ -4,122 +4,192 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import { Helmet } from 'react-helmet-async';
 import { TextField, Typography, Button } from '@mui/material';
+
 import axios from 'axios';
 import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import getError from '../utils';
 
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import Lock from '@mui/icons-material/Lock';
+
+import IconButton from '@mui/material/IconButton';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+
+import './SigninScreen.css'
+
+
+const PasswordField = () => {
+	const [showPassword, setShowPassword] = useState(false);
+
+	const handleClickShowPassword = () => setShowPassword(!showPassword);
+
+	return (
+	<TextField
+		type={showPassword ? 'text' : 'password'}
+		variant="standard"
+		required
+		InputProps={{
+			endAdornment: (
+				<InputAdornment position="end">
+					<IconButton onClick={handleClickShowPassword}>
+						{showPassword ? <VisibilityOff /> : <Visibility />}
+					</IconButton>
+				</InputAdornment>
+			),
+		
+			startAdornment: (
+				<InputAdornment position="start">
+					<Lock sx={{ fontSize: 30 }} />
+				</InputAdornment>
+			),
+			sx: {
+				'& .MuiInput-underline:before': {
+					borderBottom: '2px solid #000', // Custom bottom border
+				},
+				'& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+					borderBottom: '2px solid #000', // Hover bottom border
+				},
+				'& .MuiInput-underline:after': {
+					borderBottom: '2px solid #000', // Focused bottom border
+				},
+			},
+		}}
+		sx={{
+			display: 'flex',
+			marginTop: '30px',
+			width: '100%',
+				'& .MuiInputBase-root': {
+				paddingLeft: '5px'
+			}
+		}}
+	/>
+	);
+};
+
 function SigninScreen() {
-  const navigate = useNavigate();
-  const { search } = useLocation();
-  const redirectInUrl = new URLSearchParams(search).get('redirect');
-  const redirect = redirectInUrl ? redirectInUrl : '/';
+	const navigate = useNavigate();
+	const { search } = useLocation();
+	const redirectInUrl = new URLSearchParams(search).get('redirect');
+	const redirect = redirectInUrl ? redirectInUrl : '/';
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [attempts, setAttempts] = useState(0);
-  const [lockoutTime, setLockoutTime] = useState(null);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [attempts, setAttempts] = useState(0);
+	const [lockoutTime, setLockoutTime] = useState(null);
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { userInfo } = state;
+	const { state, dispatch: ctxDispatch } = useContext(Store);
+	const { userInfo } = state;
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    if (lockoutTime) {
-      const currentTime = new Date().getTime();
-      if (currentTime < lockoutTime) {
-        const timeLeft = Math.ceil((lockoutTime - currentTime) / 1000);
-        toast.error(`Too many attempts. Please wait ${timeLeft} seconds.`);
-        return;
-      } else {
-        setLockoutTime(null);
-        setAttempts(0);
-      }
-    }
+	const submitHandler = async (e) => {
+		e.preventDefault();
+		if (lockoutTime) {
+			const currentTime = new Date().getTime();
+			if (currentTime < lockoutTime) {
+				const timeLeft = Math.ceil((lockoutTime - currentTime) / 1000);
+				toast.error(`Too many attempts. Please wait ${timeLeft} seconds.`);
+				return;
+			} else {
+				setLockoutTime(null);
+				setAttempts(0);
+			}
+		}
 
-    try {
-      const { data } = await axios.post(`/api/users/signin`, {
-        email,
-        password,
-      });
-      ctxDispatch({ type: 'USER_SIGNIN', payload: data });
-      localStorage.setItem('userInfo', JSON.stringify(data));
-      navigate(redirect || '/');
-    } catch (err) {
-      const errorMessage = getError(err);
-      if (errorMessage.includes('401')) {
-        setAttempts(prev => prev + 1);
-        if (attempts + 1 >= 3) {
-          const lockTime = new Date().getTime() + 90 * 1000; // 1 minute 30 seconds
-          setLockoutTime(lockTime);
-          toast.error('Too many attempts. You are locked out for 90 seconds.');
-        } else {
-          toast.error('Wrong email or password. Please try again.');
-        }
-      } else {
-        toast.error(errorMessage);
-      }
-    }
-  };
+		try {
+			const { data } = await axios.post(`/api/users/signin`, {
+				email,
+				password,
+			});
+			ctxDispatch({ type: 'USER_SIGNIN', payload: data });
+			localStorage.setItem('userInfo', JSON.stringify(data));
+			navigate(redirect || '/');
+		} catch (err) {
+			const errorMessage = getError(err);
+			if (errorMessage.includes('401')) {
+				setAttempts(prev => prev + 1);
+				if (attempts + 1 >= 3) {
+					const lockTime = new Date().getTime() + 90 * 1000; // 1 minute 30 seconds
+					setLockoutTime(lockTime);
+					toast.error('Too many attempts. You are locked out for 90 seconds.');
+				} else {
+					toast.error('Wrong email or password. Please try again.');
+				}
+			} else {
+				toast.error(errorMessage);
+			}
+		}
+	};
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [navigate, redirect, userInfo]);
+	useEffect(() => {
+		if (userInfo) {
+			navigate(redirect);
+		}
+	}, [navigate, redirect, userInfo]);
 
-  return (
-    <Container
-      className="small-container"
-      style={{
-        marginTop: '2rem',
-        border: '2px solid black',
-        borderRadius: '8px',
-        boxShadow: '10px 10px 10px 10px rgba(86, 81, 255, 0.57)',
-      }}
-    >
-      <Helmet>
-        <title>Sign In</title>
-      </Helmet>
-      <h1 className="my-3">Sign In</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group className="mb-3" controlId="email">
-          <TextField
-            sx={{ display: 'flex' }}
-            type="email"
-            label="Email"
-            variant="outlined"
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="password">
-          <TextField
-            sx={{ display: 'flex' }}
-            type="password"
-            label="Password"
-            variant="outlined"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <div className="mb-3" style={{ gap: '10px', display: 'flex', justifyContent: 'flex-start' }}>
-          <Button
-            type="submit"
-            variant="outlined"
-            sx={{ border: 'none', backgroundColor: '#f0c040', color: 'black' }}
-          >
-            Sign In
-          </Button>
-          <Link to="/forgot-password">Forgot Password?</Link>
-        </div>
-        <div className="mb-3" style={{ display: 'flex', gap: '5px' }}>
-          <Typography>New Customer?</Typography>
-          <Link to={`/signup?redirect=${redirect}`}>CREATE ACCOUNT HERE</Link>
-        </div>
-      </Form>
-    </Container>
-  );
+	return (
+		<div className="login-design">
+			<div className="bg-login"></div>
+			<div className="login-card">
+				<Form onSubmit={submitHandler}>
+				<h2 style={{marginTop: '30px'}}><center>CUSTOMER LOGIN</center></h2>
+				<hr style={{borderBottom: '3px solid #111', width: '40%', marginLeft: '30%'}}/>
+
+				<Form.Group controlId="email">
+					<TextField
+						type="email"
+						variant="standard"
+						placeholder="Enter email"
+						required
+						onChange={(e) => setEmail(e.target.value)}
+							InputProps={{
+								startAdornment: (
+									<InputAdornment position="start">
+										<AccountCircle sx={{ fontSize: 30 }} />
+									</InputAdornment>
+								),
+							sx: {
+								'& .MuiInput-underline:before': {
+									borderBottom: '4px solid #555',
+								},
+								'& .MuiInput-underline:hover:not(.Mui-disabled):before': {
+									borderBottom: '4px solid #555',
+								},
+								'& .MuiInput-underline:after': {
+									borderBottom: '4px solid #555', 
+								},
+							},
+							}}
+							sx={{
+								display: 'flex',
+								marginTop: '50px',
+								width: '100%',
+									'& .MuiInputBase-root': {
+									paddingLeft: '5px',
+							},
+						}}
+					/>
+				</Form.Group>
+
+				<Form.Group controlId="password">
+					<PasswordField />
+				</Form.Group>
+
+				<button type="submit" className="login-button">LOGIN</button>
+				<span><center style={{marginTop: '20px'}}>Or</center></span>
+				
+				<div className="bottom-login">
+				
+					<Link to="/forgot-password">Forgot Password</Link>
+					&nbsp;/&nbsp;
+					<Link to={`/signup?redirect=${redirect}`}>Create account</Link>
+				
+				</div>
+				</Form>
+			</div>
+		</div>
+	);
 }
 
 export default SigninScreen;

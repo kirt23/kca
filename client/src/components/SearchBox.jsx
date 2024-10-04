@@ -22,7 +22,8 @@ function SearchBox() {
     if (isAuthPage) return null;
 
     return (
-        <Form className='d-flex me-auto' onSubmit={submitHandler} style={{ width: "30rem" }}>
+        <div className='search-box me-auto' style={{ width: "30rem" }}>
+        <Form onSubmit={submitHandler} >
             <InputGroup>
                 <FormControl
                     type='text'
@@ -42,6 +43,7 @@ function SearchBox() {
                 </Button>
             </InputGroup>
         </Form>
+        </div>
     );
 }
 

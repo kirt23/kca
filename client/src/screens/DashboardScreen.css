@@ -1,0 +1,99 @@
+
+.dashboard-container {
+	display: flex;
+	margin-left: 10%;
+	width: 80%;
+	flex-direction: column;
+	height: auto;
+}
+
+.top-dashboard {
+	position: relative;
+	width: 100%;
+	height: 20vh;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	column-gap: 20px;
+
+	padding: 20px 0;
+	box-sizing: content-box;
+
+	margin-bottom: 10px;
+
+}
+
+.top-dashboard .top-card {
+	position: relative;
+	height: 100%;
+	color: white;
+	border-radius: 10px;
+	border: none;
+}
+.top-dashboard .top-card.users {
+	background-color: #000000;
+}
+
+.top-dashboard .top-card.orders {
+	background-color: #F15A4A;
+}
+.top-dashboard .top-card.top-sales {
+	background-color: #C9905B;
+}
+
+
+.sales-dashboard {
+	position: relative;
+	height: 50vh;
+	margin-bottom: 5px;
+}
+
+.sales-dashboard .print-sales {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 5px 25px;
+	background-color: #007bff;
+	border-radius: 10px;
+	color: white;
+	font-weight: bold;
+	box-shadow: 0 4px 5px #00000011;
+	transition: 0.1s transform;
+	cursor: pointer;
+}
+.sales-dashboard .print-sales:hover {
+	background-color: #005bdf;
+	transform: scale(1.1);
+}
+
+.category-dashboard {
+	position: relative;
+	width: 100%;
+	height: 80px;
+	background-color: #eee;
+	border-radius: 0 10px;
+	border: 1px solid #ccc;
+
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	box-shadow: 0 5px 10px #00000044;
+
+	margin-bottom: 30px;
+
+}
+
+.category-container {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	height: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+
+	color: black;
+}
+
+.category-container .bar {
+	display: flex;
+	height: 10px;
+}
+
