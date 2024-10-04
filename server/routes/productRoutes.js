@@ -5,9 +5,50 @@ import { isAdmin, isAuth } from '../utils.js';
 
 const productRouter = express.Router();
 
+const sampleProducts = [
+  {
+    name: 'Product 1',
+    slug: 'product-1',
+    image: 'https://example.com/product1.jpg',
+    images: [
+      'https://example.com/product1-1.jpg',
+      'https://example.com/product1-2.jpg'
+    ],
+    brand: 'Brand A',
+    category: 'Category A',
+    description: 'This is a sample product 1 description.',
+    price: 29.99,
+    countInStock: 100,
+    rating: 4.5,
+    numReviews: 12,
+    isArchived: false,
+    archivedAt: null,
+    reviews: []
+  },
+  {
+    name: 'Product 2',
+    slug: 'product-2',
+    image: 'https://example.com/product2.jpg',
+    images: [
+      'https://example.com/product2-1.jpg',
+      'https://example.com/product2-2.jpg'
+    ],
+    brand: 'Brand B',
+    category: 'Category B',
+    description: 'This is a sample product 2 description.',
+    price: 49.99,
+    countInStock: 50,
+    rating: 4.0,
+    numReviews: 8,
+    isArchived: false,
+    archivedAt: null,
+    reviews: []
+  }
+];
+
 productRouter.get('/', async (req, res) =>{
      const products = await Product.find({ isArchived: false });
-    res.send(products);
+    res.send(sampleProducts);
 });
 // List all archived products (Admin only)
 
@@ -362,6 +403,7 @@ productRouter.get(
       ...priceFilter,
       ...ratingFilter,
     });
+
     res.send({
       products,
       countProducts,
@@ -380,7 +422,6 @@ productRouter.get(
         const categories = await Product.find().distinct('category');
         res.send(categories);
     })
-
 );
 
 productRouter.get('/slug/:slug', async(req, res) =>{ // BACKEND API FOR RETURNING PROD INFO BASE SLUG 

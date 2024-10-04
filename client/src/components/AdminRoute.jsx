@@ -2,19 +2,15 @@ import React, { useContext } from 'react'
 import {Navigate} from 'react-router-dom';
 import { Store } from '../Store';
 
-function AdminRoute ({children}) {
-    const {state} = useContext(Store);
-    const {userInfo} =  state;
-    
+export default function AdminRoute ({children}) {
+		const {state}    = useContext(Store);
+		const {userInfo} =  state;
 
-
-
-  return( 
-        userInfo.isAdmin || userInfo.isRider 
-         ? children
-         : <Navigate to="/signin"/> 
-    )
-  
+	return (
+		userInfo.isAdmin || userInfo.isRider 
+		// true
+			? children
+			: <Navigate to="/signin"/> 
+	)
+	
 }
-
-export default AdminRoute;
