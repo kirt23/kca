@@ -1,120 +1,28 @@
-import React, { useState, useContext, useEffect, useReducer } from 'react'
-import { Store } from '../Store';
-import {getError} from '../utils';
-import axios, { Axios } from 'axios';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { Card, Col, Row } from 'react-bootstrap';
+import React, { useState, useContext, useEffect, useReducer } from "react";
+import { Store } from "../Store";
+import { getError } from "../utils";
+import axios, { Axios } from "axios";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { Card, Col, Row } from "react-bootstrap";
 
-import Chart from 'react-google-charts';
+import Chart from "react-google-charts";
 
-import './DashboardScreen.css'
+import "./DashboardScreen.css";
 
-// const sampleOrder = {
-// 	orderItems: [
-// 		{
-// 			slug: 'product-1-slug',
-// 			name: 'Product 1',
-// 			quantity: 2,
-// 			image: 'https://example.com/images/product1.jpg',
-// 			price: 100,
-// 			product: '60d21b4667d0d8992e610c85', // example ObjectId reference
-// 		},
-// 		{
-// 			slug: 'product-2-slug',
-// 			name: 'Product 2',
-// 			quantity: 1,
-// 			image: 'https://example.com/images/product2.jpg',
-// 			price: 50,
-// 			product: '60d21b4667d0d8992e610c86', // example ObjectId reference
-// 		},
-// 	],
-// 	shippingAddress: {
-// 		LastName: 'Doe',
-// 		fullName: 'John Doe',
-// 		address: '123 Main St',
-// 		city: 'Los Angeles',
-// 		postalCode: 90001,
-// 	},
-// 	paymentMethodName: 'Credit Card',
-// 	referenceNumber: 'REF123456',
-// 	paymentImage: 'https://example.com/payment/paymentImage.jpg',
-// 	paymentResult: {
-// 		id: 'PAY123456',
-// 		status: 'Completed',
-// 		update_time: '2024-10-01T10:00:00Z',
-// 		email_address: 'john.doe@example.com',
-// 	},
-// 	itemsPrice: 250,
-// 	shippingPrice: 20,
-// 	taxPrice: 10,
-// 	totalPrice: 280,
-// 	user: '60d21b4667d0d8992e610c87', // example ObjectId reference for the user
-// 	isPaid: true,
-// 	paidAt: new Date('2024-10-01T12:00:00Z'),
-// 	proofOfDeliveryImage: 'https://example.com/proof/delivery.jpg',
-// 	isDelivered: true,
-// 	deliveredAt: new Date('2024-10-02T14:00:00Z'),
-// };
+const TopAccount = () => {
+	return <div className="top-account"></div>;
+};
 
-
-// const summaryCategory = {
-// 	productCategories: [
-// 		{
-// 			_id: 'Electronics',
-// 			count: 10,
-// 		},
-// 		{
-// 			_id: 'Books',
-// 			count: 5,
-// 		},
-// 		{
-// 			_id: 'Clothing',
-// 			count: 8,
-// 		},
-// 		{
-// 			_id: 'Home Appliances',
-// 			count: 3,
-// 		},
-// 	],
-// };
-
-// const summarySales = {
-// 	dailyOrders: [
-// 		{
-// 			_id: '2024-09-25', // Date of the sales
-// 			sales: 150,        // Sales amount for that date
-// 		},
-// 		{
-// 			_id: '2024-09-26',
-// 			sales: 200,
-// 		},
-// 		{
-// 			_id: '2024-09-27',
-// 			sales: 100,
-// 		},
-// 		{
-// 			_id: '2024-09-28',
-// 			sales: 250,
-// 		},
-// 		{
-// 			_id: '2024-09-29',
-// 			sales: 300,
-// 		},
-// 	],
-// };
-
-const TopDashboard = ({summary}) => {
-
-
+const TopDashboard = ({ summary }) => {
 	return (
 		<div className="top-dashboard">
 			<Card className="top-card users">
 				<Card.Body>
 					<Card.Title>
 						{summary.users && summary.users[0]
-						? summary.users[0].numUsers
-						: 0}
+							? summary.users[0].numUsers
+							: 0}
 					</Card.Title>
 					<Card.Text>USERS</Card.Text>
 				</Card.Body>
@@ -124,8 +32,8 @@ const TopDashboard = ({summary}) => {
 				<Card.Body>
 					<Card.Title>
 						{summary.orders && summary.users[0]
-						? summary.orders[0].numOrders
-						: 0}
+							? summary.orders[0].numOrders
+							: 0}
 					</Card.Title>
 					<Card.Text>ORDERS</Card.Text>
 				</Card.Body>
@@ -133,44 +41,46 @@ const TopDashboard = ({summary}) => {
 
 			<Card className="top-card top-sales">
 				<Card.Body>
-					<Card.Title> ₱{' '}
+					<Card.Title>
+						{" "}
+						₱{" "}
 						{summary.orders && summary.users[0]
 							? summary.orders[0].totalSales.toFixed(2)
 							: 0}
-						</Card.Title>
-						<Card.Text>TOTAL SALES</Card.Text>
+					</Card.Title>
+					<Card.Text>TOTAL SALES</Card.Text>
 				</Card.Body>
 			</Card>
 		</div>
-	)
-}
+	);
+};
 
 const SalesChart = ({ summary }) => {
-	const [view, setView] = useState('Day');
+	const [view, setView] = useState("Day");
 	const dailyData = summary.dailyOrders.map((x) => [x._id, x.sales]);
 
 	const chartData = {
-		Day: [['Date', 'Sales'], ...dailyData]
+		Day: [["Date", "Sales"], ...dailyData],
 	};
 
 	const currentDate = new Date().toLocaleDateString();
 
 	const chartOptions = {
-		hAxis: { title: 'Date' },          
-		vAxis: { title: 'Sales' },         
-		colors: ['gold'],               
-		lineWidth: 3,                      
-		curveType: 'function',      
-		areaOpacity: 0.1,                  
-		backgroundColor: '#fafafa',
-		legend: { position: 'bottom' } 
+		hAxis: { title: "Date" },
+		vAxis: { title: "Sales" },
+		colors: ["gold"],
+		lineWidth: 3,
+		curveType: "function",
+		areaOpacity: 0.1,
+		backgroundColor: "#fafafa55",
+		legend: { position: "bottom" },
 	};
 
 	const handlePrint = () => {
-		const chartElement = document.querySelector('.sales-dashboard');
+		const chartElement = document.querySelector(".sales-dashboard");
 
 		if (chartElement) {
-			const printWindow = window.open('', '', 'width=800,height=600');
+			const printWindow = window.open("", "", "width=800,height=600");
 			printWindow.document.write(`
 			<html>
 				<head>
@@ -240,18 +150,22 @@ const SalesChart = ({ summary }) => {
 
 	return (
 		<div className="sales-dashboard">
-			<Card style={{ width: '100%', height: '100%', padding: '10px', boxSizing: 'border-box' }}>
+			<Card
+				style={{
+					width: "100%",
+					height: "100%",
+					padding: "10px",
+					boxSizing: "border-box",
+				}}
+			>
 				{/* Print Button */}
-				<div 
-					className="print-sales" 
-					onClick={handlePrint}
-				>
+				<div className="print-sales" onClick={handlePrint}>
 					PRINT
 				</div>
 
 				<h3>Sales</h3>
 				<div>{currentDate}</div>
-				{(!summary.dailyOrders || summary.dailyOrders.length === 0) ? (
+				{!summary.dailyOrders || summary.dailyOrders.length === 0 ? (
 					<MessageBox>No Sales</MessageBox>
 				) : (
 					<Chart
@@ -269,26 +183,47 @@ const SalesChart = ({ summary }) => {
 };
 
 const CategoriesChart = ({ summary }) => {
-	const totalProducts = summary.productCategories.reduce((acc, category) => acc + category.count, 0);
+	const totalProducts = summary.productCategories.reduce(
+		(acc, category) => acc + category.count,
+		0
+	);
 
 	return (
 		<>
-			{!summary.productCategories || summary.productCategories.length === 0 ? (
+			{!summary.productCategories ||
+			summary.productCategories.length === 0 ? (
 				<MessageBox>No Categories</MessageBox>
 			) : (
 				<div className="category-dashboard">
 					{summary.productCategories.slice(0, 6).map((category) => {
-						const percentage = totalProducts ? (category.count / totalProducts) * 100 : 0;
+						const percentage = totalProducts
+							? (category.count / totalProducts) * 100
+							: 0;
 						return (
 							<div className="category-container">
 								<span>{category._id}</span>
-								<span><strong>{percentage.toFixed(1)}%</strong></span>
+								<span>
+									<strong>{percentage.toFixed(1)}%</strong>
+								</span>
 								<div className="bar">
-									<div style={{  backgroundColor: '#F15A4A', height: '100%', width: `${percentage}%` }} />
-									<div style={{ flex: 1, backgroundColor: '#333', height: '100%', width: `${100-percentage}%` }} />                 
+									<div
+										style={{
+											backgroundColor: "#F15A4A",
+											height: "100%",
+											width: `${percentage}%`,
+										}}
+									/>
+									<div
+										style={{
+											flex: 1,
+											backgroundColor: "#333",
+											height: "100%",
+											width: `${100 - percentage}%`,
+										}}
+									/>
 								</div>
 							</div>
-						)
+						);
 					})}
 				</div>
 			)}
@@ -297,158 +232,60 @@ const CategoriesChart = ({ summary }) => {
 };
 
 const reducer = (state, action) => {
+	switch (action.type) {
+		case "FETCH_REQUEST":
+			return { ...state, loading: true };
+		case "FETCH_SUCCESS":
+			return { ...state, summary: action.payload, loading: false };
+		case "FETCH_FAIL":
+			return { ...state, loading: false, error: action.payload };
+		default:
+			return state;
+	}
+};
 
-		switch (action.type) {
-				case 'FETCH_REQUEST':
-						return {...state, loading: true};
-				case 'FETCH_SUCCESS':
-						return {...state, 
-								summary: action.payload,
-								loading: false
-						};
-				case 'FETCH_FAIL':
-						return {...state, loading: false, error: action.payload};
-				default:
-						return state;
-		}
-}
+function DashboardScreen() {
+	const [{ loading, summary, error }, dispatch] = useReducer(reducer, {
+		loading: true,
+		error: "",
+	});
+	const { state } = useContext(Store);
+	const { userInfo } = state;
 
-function DashboardScreen () {
-		const [{loading, summary, error}, dispatch] = useReducer(reducer, {
-				loading: true,
-				error: '',
-		})
-		const {state} = useContext(Store);
-		const {userInfo} = state;
-
-		// useEffect(() => {
-		//     const fetchData = async () => {
-		//       try {
-		//         const { data } = await axios.get('/api/orders/summary', {
-		//           headers: { Authorization: `Bearer ${userInfo.token}` },
-		//         });
-		//         dispatch({ type: 'FETCH_SUCCESS', payload: data });
-		//       } catch (err) {
-		//         dispatch({
-		//           type: 'FETCH_FAIL',
-		//           payload: getError(err),
-		//         });
-		//       }
-		//     };
-		//     fetchData();
-		//   }, [userInfo]);
-
-		useEffect(() => {
+	useEffect(() => {
 		const fetchData = async () => {
-				try {
-				const { data } = await axios.get('/api/orders/summary', {
-				    headers: { Authorization: `Bearer ${userInfo.token}` },
+			try {
+				const { data } = await axios.get("/api/orders/summary", {
+					headers: { Authorization: `Bearer ${userInfo.token}` },
 				});
-				dispatch({ type: 'FETCH_SUCCESS', payload: data });
+				dispatch({ type: "FETCH_SUCCESS", payload: data });
 				// dispatch({ type: 'FETCH_SUCCESS', payload: sampleOrder });
-				} catch (err) {
+			} catch (err) {
 				dispatch({
-						type: 'FETCH_FAIL',
-						payload: getError(err),
+					type: "FETCH_FAIL",
+					payload: getError(err),
 				});
-				}
+			}
 		};
 		fetchData();
-		}, [userInfo]);
+	}, [userInfo]);
 
 	return (
 		<div>
-			{loading
-				? (<LoadingBox/>)
-				: error
-						? (<MessageBox variant='danger'>{error}</MessageBox>)
-						: (
-								<div className="dashboard-container">
-								{/*<Row>
-												<Col md={4}>
-
-														<Card>
-																<Card.Body>
-																		<Card.Title>
-																				{summary.users && summary.users[0]
-																						? summary.users[0].numUsers
-																						: 0}
-																		</Card.Title>
-																		<Card.Text>USERS</Card.Text>
-																</Card.Body>
-														</Card>
-												</Col>
-
-
-												<Col md={4}>
-														<Card>
-																<Card.Body>
-																		<Card.Title>
-																		{summary.orders && summary.users[0]
-																						? summary.orders[0].numOrders
-																						: 0}
-																		</Card.Title>
-																		<Card.Text>Orders</Card.Text>
-																</Card.Body>
-														</Card>
-												</Col>
-
-												<Col md={4}>
-														<Card>
-																<Card.Body>
-																		<Card.Title> ₱
-																		{summary.orders && summary.users[0]
-																						? summary.orders[0].totalSales.toFixed(2)
-																						: 0}
-																		</Card.Title>
-																		<Card.Text>Total Sales</Card.Text>
-																</Card.Body>
-														</Card>
-												</Col>
-										</Row>*/}
-										<TopDashboard summary={summary} />
-										<SalesChart summary={summary}/>
-										<CategoriesChart summary={summary} />
-
-										{/*<div className="my-3">
-											<h2>Categories</h2>
-											{!summaryCategory.productCategories || summaryCategory.productCategories.length === 0 ? (
-												<MessageBox>No Categories</MessageBox>
-											) : (
-												<Chart
-													width="100%"
-													height="400px"
-													chartType="PieChart"
-													loader={<div>Loading Chart...</div>}
-													data={[
-														['Categories', 'Products'],
-														...summaryCategory.productCategories.map((x) => [x._id, x.count]),
-													]}
-												/>
-											)}
-										</div>*/}
-
-										{/*<div className="my-3">
-												<h2>Categories</h2>
-										{summary.productCategories || summary.productCategories.length === 0
-												? (<MessageBox>No Categories</MessageBox>)
-												: (
-														<Chart
-																width="100%"
-																height="400px"
-																chartType='PieChart'
-																loader={<div>Loading Chart...</div>}
-																data={[
-																		['Categories', 'Products'],
-																		...summary.productCategories.map((x) => [x._id, x.count]),
-																]}></Chart>
-												)}
-										</div>*/}
-								</div> )
-						
-			}
+			{loading ? (
+				<LoadingBox />
+			) : error ? (
+				<MessageBox variant="danger">{error}</MessageBox>
+			) : (
+				<div className="dashboard-container">
+					<TopAccount />
+					<TopDashboard summary={summary} />
+					<SalesChart summary={summary} />
+					<CategoriesChart summary={summary} />
+				</div>
+			)}
 		</div>
-	)
+	);
 }
 
 export default DashboardScreen;

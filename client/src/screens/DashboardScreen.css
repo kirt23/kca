@@ -1,15 +1,36 @@
-
 .dashboard-container {
 	display: flex;
-	margin-left: 10%;
-	width: 80%;
+	position: absolute;
+	top: 0;
+	left: 20vw;
+	width: 80vw;
 	flex-direction: column;
 	height: auto;
 }
 
-.top-dashboard {
+.dashboard-container::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, #ffffff 50%, #181818 50%);
+	transform-origin: top left;
+	z-index: -1;
+}
+
+.top-account {
 	position: relative;
 	width: 100%;
+	height: 50px;
+	background-color: black;
+}
+
+.top-dashboard {
+	position: relative;
+	left: 5%;
+	width: 90%;
 	height: 20vh;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -19,7 +40,6 @@
 	box-sizing: content-box;
 
 	margin-bottom: 10px;
-
 }
 
 .top-dashboard .top-card {
@@ -34,17 +54,21 @@
 }
 
 .top-dashboard .top-card.orders {
-	background-color: #F15A4A;
+	background-color: #f15a4a;
 }
 .top-dashboard .top-card.top-sales {
-	background-color: #C9905B;
+	background-color: #c9905b;
 }
-
 
 .sales-dashboard {
 	position: relative;
+	left: 5%;
+	width: 90%;
 	height: 50vh;
 	margin-bottom: 5px;
+	box-shadow: 0 4px 5px #00000033;
+	border: 2px solid black;
+	border-radius: 10px;
 }
 
 .sales-dashboard .print-sales {
@@ -67,7 +91,8 @@
 
 .category-dashboard {
 	position: relative;
-	width: 100%;
+	left: 5%;
+	width: 90%;
 	height: 80px;
 	background-color: #eee;
 	border-radius: 0 10px;
@@ -78,7 +103,6 @@
 	box-shadow: 0 5px 10px #00000044;
 
 	margin-bottom: 30px;
-
 }
 
 .category-container {
@@ -96,4 +120,3 @@
 	display: flex;
 	height: 10px;
 }
-

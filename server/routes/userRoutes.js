@@ -1,47 +1,50 @@
-import express from 'express';
-import bcrypt from 'bcryptjs'
-import User from '../models/userModel.js';
-import dotenv from 'dotenv'
-import { generateToken, isAdmin, isAuth } from '../utils.js';
-import expressAsyncHandler from 'express-async-handler';
-import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
+import express from "express";
+import bcrypt from "bcryptjs";
+import User from "../models/userModel.js";
+import dotenv from "dotenv";
+import { generateToken, isAdmin, isAuth } from "../utils.js";
+import expressAsyncHandler from "express-async-handler";
+import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
 dotenv.config();
 const userRouter = express.Router();
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    // host: 'kcaligam@ccc.edu.ph',
-    auth: {
-        user:process.env.EMAIL_USER,
-        pass:process.env.EMAIL_PASS,
-    }
-})
+	service: "gmail",
+	// host: 'kcaligam@ccc.edu.ph',
+	auth: {
+		user: process.env.EMAIL_USER,
+		pass: process.env.EMAIL_PASS,
+	},
+});
 const generateVerificationToken = (email) => {
-    return jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: '1h'});
-}
+	return jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+};
 userRouter.get(
-    '/verify-email',
-    expressAsyncHandler(async(req, res) => {
-        const  token  = req.query.token;
-        console.log('Received Token:', token);
+	"/verify-email",
+	expressAsyncHandler(async (req, res) => {
+		const token = req.query.token;
+		console.log("Received Token:", token);
 
-        if (!token) {
-            return res.status(400).json({message:"No tokenn"});
-        }
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await User.findOne({email: decoded.email});
-            if (!user) {
-                return res.status(400).json({message: 'Invalid token or user not found'});
-            }
-            if (user.isVerified) {
-                return res.status(400).json({message: 'User already verified'});
-
-            }
-            user.isVerified = true;
-            //user.verificationToken = null;
-            await user.save();
-            const htmlContent = `
+		if (!token) {
+			return res.status(400).json({ message: "No tokenn" });
+		}
+		try {
+			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+			const user = await User.findOne({ email: decoded.email });
+			if (!user) {
+				return res
+					.status(400)
+					.json({ message: "Invalid token or user not found" });
+			}
+			if (user.isVerified) {
+				return res
+					.status(400)
+					.json({ message: "User already verified" });
+			}
+			user.isVerified = true;
+			//user.verificationToken = null;
+			await user.save();
+			const htmlContent = `
             <!DOCTYPE html>
             <html lang="en">
             <head>
@@ -102,213 +105,224 @@ userRouter.get(
             </html>
 
             `;
-            res.status(200).send(htmlContent);
-            //res.json({message: 'Email verified successfully'});
-            //res.json({verified: true});
-            // res.status(200).json({
-            //     message:'',
-            //     user: {
-            //         _id: user.id,
-            //         name: user.naame,
-            //         lastname: user.lastname,
-            //         email: user.email,
-            //         isAdmin:user.isAdmin,
-            //         token: generateToken(user),
+			res.status(200).send(htmlContent);
+			//res.json({message: 'Email verified successfully'});
+			//res.json({verified: true});
+			// res.status(200).json({
+			//     message:'',
+			//     user: {
+			//         _id: user.id,
+			//         name: user.naame,
+			//         lastname: user.lastname,
+			//         email: user.email,
+			//         isAdmin:user.isAdmin,
+			//         token: generateToken(user),
 
-            //     },
+			//     },
 
-            // })
-           // return res.status(200).json({message: 'Email verified successfully! you can now log in.'});
-        }catch (error) {
-            return res.status(400).json({message: 'Invalid or expired token.'})
-        }
-    }))
+			// })
+			// return res.status(200).json({message: 'Email verified successfully! you can now log in.'});
+		} catch (error) {
+			return res
+				.status(400)
+				.json({ message: "Invalid or expired token." });
+		}
+	})
+);
 
-    userRouter.post('/forgot-password', expressAsyncHandler(async (req, res) => {
-        const { email } = req.body;
-        const user = await User.findOne({ email });
-    
-        if (!user) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-    
-        // Generate reset token
-        const resetToken = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    
-        // Create password reset URL
-        const resetUrl = `http://localhost:3000/reset-password?token=${resetToken}`;
-    
-        // Email content
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: user.email,
-            subject: 'Password Reset',
-            html: `
+userRouter.post(
+	"/forgot-password",
+	expressAsyncHandler(async (req, res) => {
+		const { email } = req.body;
+		const user = await User.findOne({ email });
+
+		if (!user) {
+			return res.status(404).json({ message: "User not found" });
+		}
+
+		// Generate reset token
+		const resetToken = jwt.sign(
+			{ email: user.email },
+			process.env.JWT_SECRET,
+			{ expiresIn: "1h" }
+		);
+
+		// Create password reset URL
+		const resetUrl = `http://localhost:3000/reset-password?token=${resetToken}`;
+
+		// Email content
+		const mailOptions = {
+			from: process.env.EMAIL_USER,
+			to: user.email,
+			subject: "Password Reset",
+			html: `
               <h2>Password Reset Request</h2>
               <p>Click the link below to reset your password:</p>
               <a href="${resetUrl}">Reset Password</a>
-            `
-        };
-    
-        // Send email
-        await transporter.sendMail(mailOptions);
-    
-        res.status(200).json({ message: 'Password reset email sent!' });
-    }));
-    userRouter.post('/reset-password', expressAsyncHandler(async (req, res) => {
-        const { token, password } = req.body;
-    
-        // Verify the token
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            const user = await User.findOne({ email: decoded.email });
-    
-            if (!user) {
-                return res.status(404).json({ message: 'User not found' });
-            }
-    
-            // Hash the new password
-            user.password = bcrypt.hashSync(password, 8);
-    
-            // Save the updated user
-            await user.save();
-    
-            res.status(200).json({ message: 'Password updated successfully!' });
-        } catch (error) {
-            res.status(400).json({ message: 'Invalid or expired token' });
-        }
-    }));
-    
-    userRouter.get('/check-verification-status', async(req,res) => {
-        const {email} = req.query;
-        try {
-            const user = await User.findOne({email});
-            if (!user) {
-                return res.status(404).send('User not found')
-            }
-            if (user.isVerified) {
-                return res.json({isVerified:true})
-            }
-             res.json({isVerified:false})
-        }catch (error) {
-            res.status(500).send('Internaal server error');
-        }
-    })
+            `,
+		};
+
+		// Send email
+		await transporter.sendMail(mailOptions);
+
+		res.status(200).json({ message: "Password reset email sent!" });
+	})
+);
+userRouter.post(
+	"/reset-password",
+	expressAsyncHandler(async (req, res) => {
+		const { token, password } = req.body;
+
+		// Verify the token
+		try {
+			const decoded = jwt.verify(token, process.env.JWT_SECRET);
+			const user = await User.findOne({ email: decoded.email });
+
+			if (!user) {
+				return res.status(404).json({ message: "User not found" });
+			}
+
+			// Hash the new password
+			user.password = bcrypt.hashSync(password, 8);
+
+			// Save the updated user
+			await user.save();
+
+			res.status(200).json({ message: "Password updated successfully!" });
+		} catch (error) {
+			res.status(400).json({ message: "Invalid or expired token" });
+		}
+	})
+);
+
+userRouter.get("/check-verification-status", async (req, res) => {
+	const { email } = req.query;
+	try {
+		const user = await User.findOne({ email });
+		if (!user) {
+			return res.status(404).send("User not found");
+		}
+		if (user.isVerified) {
+			return res.json({ isVerified: true });
+		}
+		res.json({ isVerified: false });
+	} catch (error) {
+		res.status(500).send("Internaal server error");
+	}
+});
 userRouter.get(
-    '/',
-    isAuth,
-    expressAsyncHandler(async(req,res) => {
-        const users = await User.find({});
-        res.send(users);
-    })
-)
+	"/",
+	isAuth,
+	expressAsyncHandler(async (req, res) => {
+		const users = await User.find({});
+		res.send(users);
+	})
+);
 
 userRouter.get(
-    '/:id',
-    isAuth,
-    expressAsyncHandler(async(req, res) => {
-        const user = await User.findById(req.params.id);
-        if (user){
-            res.send(user);
-        }
-        else {
-            res.status(404).send({message: 'USER DO NOT EXIST. ERROR 404'});
-        }
-    })
+	"/:id",
+	isAuth,
+	expressAsyncHandler(async (req, res) => {
+		const user = await User.findById(req.params.id);
+		if (user) {
+			res.send(user);
+		} else {
+			res.status(404).send({ message: "USER DO NOT EXIST. ERROR 404" });
+		}
+	})
 );
 
 userRouter.put(
-    '/:id',
-    isAuth,
-    expressAsyncHandler(async (req, res) => {
-        const user = await User.findById(req.params.id);
-        if (user) {
-            user.name = req.body.name || user.name;
-            user.email = req.body.email || user.email;
-            user.isAdmin = Boolean(req.body.isAdmin);
-            const updatedUser = await user.save();
-            res.send({ message: 'USER INFO IS UPDATED', user: updatedUser });
-        }
-        else {
-            res.status(404).send({ message: 'USER DO NOT EXIST. ERROR 404' })
-        }
-    })
+	"/:id",
+	isAuth,
+	expressAsyncHandler(async (req, res) => {
+		const user = await User.findById(req.params.id);
+		if (user) {
+			user.name = req.body.name || user.name;
+			user.email = req.body.email || user.email;
+			user.isAdmin = Boolean(req.body.isAdmin);
+			const updatedUser = await user.save();
+			res.send({ message: "USER INFO IS UPDATED", user: updatedUser });
+		} else {
+			res.status(404).send({ message: "USER DO NOT EXIST. ERROR 404" });
+		}
+	})
 );
-
 
 userRouter.delete(
-    '/:id',
-    isAuth,
-    expressAsyncHandler(async (req, res) => {
-        const user = await User.findById(req.params.id);
-        if (user && !user.isAdmin) {
-            await user.deleteOne();
-            res.send({ message: 'Account Has Been Deleted'});
-        } else if (user && user.isAdmin) {
-            res.status(403).send({ message: 'Admin Account Cannot Be Deleted'});
-        } 
-        else {
-            res.status(404).send({ message: 'USER DO NOT EXIST. ERROR 404' });
-        }
-        
-    })
+	"/:id",
+	isAuth,
+	expressAsyncHandler(async (req, res) => {
+		const user = await User.findById(req.params.id);
+		if (user && !user.isAdmin) {
+			await user.deleteOne();
+			res.send({ message: "Account Has Been Deleted" });
+		} else if (user && user.isAdmin) {
+			res.status(403).send({
+				message: "Admin Account Cannot Be Deleted",
+			});
+		} else {
+			res.status(404).send({ message: "USER DO NOT EXIST. ERROR 404" });
+		}
+	})
 );
 
 userRouter.post(
-    '/signin', 
-    expressAsyncHandler(async(req, res)=> {
-        const user = await User.findOne({email: req.body.email});
-        if (user) {
-            if (!user.isVerified) {
-                res.status(401).send({message: 'Please verify your email before sign in.'})
-            }
-            if (bcrypt.compareSync(req.body.password, user.password)){
-                res.send({
-                    _id: user._id,
-                    name: user.name,
-                    lastname: user.lastname,
-                    email: user.email,
-                    password: user.password,
-                    isAdmin: user.isAdmin,
-                    isRider: user.isRider,
-                    token: generateToken(user),
-                });
-                return;
-            } 
-        }
-        res.status(401).send({message: 'Invalid Input. Error 401'})
-    }) 
-)
+	"/signin",
+	expressAsyncHandler(async (req, res) => {
+		const user = await User.findOne({ email: req.body.email });
+		if (user) {
+			if (!user.isVerified) {
+				res.status(401).send({
+					message: "Please verify your email before sign in.",
+				});
+			}
+			if (bcrypt.compareSync(req.body.password, user.password)) {
+				res.send({
+					_id: user._id,
+					name: user.name,
+					lastname: user.lastname,
+					email: user.email,
+					password: user.password,
+					isAdmin: true,
+					isRider: user.isRider,
+					token: generateToken(user),
+				});
+				return;
+			}
+		}
+		res.status(401).send({ message: "Invalid Input. Error 401" });
+	})
+);
 
 userRouter.post(
-    '/signup',
-    expressAsyncHandler(async (req, res) => {
-
-        const existingUser = await User.findOne({email: req.body.email})
-        if (existingUser) {
-            return res.status(400).json({message: 'User already exists'});
-        }
-        const hashedPassword = bcrypt.hashSync(req.body.password, 8);
-        const verificationToken = generateVerificationToken(req.body.email);
-        const newUser = new User({
-            name: req.body.name,
-            middlename: req.body.middlename,
-            lastname: req.body.lastname,
-            suffix: req.body.suffix,
-            email: req.body.email,
-            password: hashedPassword,
-            isAdmin: req.body.isAdmin || false,
-            isCustomer: req.body.isCustomer || false,
-            isVerified: false,
-            verificationToken: verificationToken,
-        })
-        const user = await newUser.save();
-        const verificationUrl = `http://localhost:5000/api/users/verify-email?token=${verificationToken}`;
-        const mailOptions = {
-            from: `"RYB Officials"<${process.env.EMAIL_USER}>`,
-            to: user.email,
-            subject:'Email Verification',
-            html: `
+	"/signup",
+	expressAsyncHandler(async (req, res) => {
+		const existingUser = await User.findOne({ email: req.body.email });
+		if (existingUser) {
+			return res.status(400).json({ message: "User already exists" });
+		}
+		const hashedPassword = bcrypt.hashSync(req.body.password, 8);
+		const verificationToken = generateVerificationToken(req.body.email);
+		const newUser = new User({
+			name: req.body.name,
+			middlename: req.body.middlename,
+			lastname: req.body.lastname,
+			suffix: req.body.suffix,
+			email: req.body.email,
+			password: hashedPassword,
+			isAdmin: req.body.isAdmin || false,
+			isCustomer: req.body.isCustomer || false,
+			isVerified: false,
+			verificationToken: verificationToken,
+		});
+		const user = await newUser.save();
+		const verificationUrl = `http://localhost:5000/api/users/verify-email?token=${verificationToken}`;
+		const mailOptions = {
+			from: `"RYB Officials"<${process.env.EMAIL_USER}>`,
+			to: user.email,
+			subject: "Email Verification",
+			html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -389,52 +403,50 @@ userRouter.post(
             </div>
         </body>
         </html>
-    `
-        };
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({
-            message:'Registration successful! Please check your email to verify your account.',
-        })
-        // res.send({
-        //     _id: user._id,
-        //     name: user.name,
-        //     lastname: user.lastname,
-        //     email: user.email,
-        //     password: user.password,
-        //     isAdmin: user.isAdmin,
-        //     token: generateToken(user),
-        // });
-    })
-)
+    `,
+		};
+		await transporter.sendMail(mailOptions);
+		res.status(200).json({
+			message:
+				"Registration successful! Please check your email to verify your account.",
+		});
+		// res.send({
+		//     _id: user._id,
+		//     name: user.name,
+		//     lastname: user.lastname,
+		//     email: user.email,
+		//     password: user.password,
+		//     isAdmin: user.isAdmin,
+		//     token: generateToken(user),
+		// });
+	})
+);
 
 userRouter.put(
-    '/profile',
-    isAuth,
-    expressAsyncHandler(async (req, res) =>{
-        const user = await User.findById(req.user._id);
-        if (user){
-            user.name = req.body.name || user.name;
-            user.lastname = req.body.lastname || user.lastname;
-            user.email = req.body.email || user.email;
-            if(req.body.password){
-                user.password = bcrypt.hashSync(req.body.password, 8);
-            }
+	"/profile",
+	isAuth,
+	expressAsyncHandler(async (req, res) => {
+		const user = await User.findById(req.user._id);
+		if (user) {
+			user.name = req.body.name || user.name;
+			user.lastname = req.body.lastname || user.lastname;
+			user.email = req.body.email || user.email;
+			if (req.body.password) {
+				user.password = bcrypt.hashSync(req.body.password, 8);
+			}
 
-            const updatedUser = await user.save();
-            res.send({
-                _id: updatedUser._id,
-                name: updatedUser.name,
-                lastname: updatedUser.lastname,
-                email: updatedUser.email,
-                isAdmin: updatedUser.isAdmin,
-                token: generateToken(updatedUser)
-            });
-        }
-
-        else {
-            res.status(404).send({message: 'USER DO NOT EXIST. ERROR 404'})
-        }
-
-    })
-)
+			const updatedUser = await user.save();
+			res.send({
+				_id: updatedUser._id,
+				name: updatedUser.name,
+				lastname: updatedUser.lastname,
+				email: updatedUser.email,
+				isAdmin: updatedUser.isAdmin,
+				token: generateToken(updatedUser),
+			});
+		} else {
+			res.status(404).send({ message: "USER DO NOT EXIST. ERROR 404" });
+		}
+	})
+);
 export default userRouter;

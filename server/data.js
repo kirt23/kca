@@ -32,7 +32,7 @@ const data = { //_id removed
         }
     ],
     custom:[
-       { 
+    { 
         name: "John",
         lastname: "McArthy",
         image: "/images/blueMens.png",
